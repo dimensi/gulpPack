@@ -1,0 +1,1 @@
+{"version":3,"file":"./js/about.js","sources":["webpack:///assets/javascript/about.js"],"sourcesContent":["import welcome from './welcome.js'\r\nwelcome(\"ABOUT\");\r\n\r\nconsole.log('привет tebe');\r\n\n\n\n/** WEBPACK FOOTER **\n ** assets/javascript/about.js\n **/"],"mappings":";;;;;;;AAAA;AACA;;;;;AAAA;AACA;;;;","sourceRoot":""}

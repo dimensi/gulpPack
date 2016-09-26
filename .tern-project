@@ -1,0 +1,16 @@
+{
+  "ecmaVersion": 5,
+  "libs": [],
+  "plugins": {
+    "doc_comment": {
+      "fullDocs": true,
+      "strong": false
+    },
+    "node": {
+      "dontLoad": "",
+      "load": "",
+      "modules": ""
+    },
+    "commonjs": {}
+  }
+}
