@@ -33,8 +33,7 @@ module.exports = {
      * common: ["./javascript/welcome", "./javascript/common"]
      */
     entry: {
-        home: "home",
-        about: "about",
+        index: "index"
     },
 
     /**
@@ -102,7 +101,7 @@ module.exports = {
      * TODO: ПРОВЕРЬ!
      */
     resolve: {
-        root: [jsPath],
+        root: [jsPath, vendorsJsPath],
         modulesDirectories: ['node_modules'],
         extensions: ['', '.js',]
     },
