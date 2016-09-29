@@ -3,6 +3,7 @@
  */
 
 var gulp         = require('gulp');
+var watch        = require('gulp-watch');
 var pug          = require('gulp-pug');
 var stylus       = require('gulp-stylus');
 var imagemin     = require('gulp-imagemin');
@@ -40,7 +41,9 @@ var path = {
 
     pugs: './assets/templates/*.pug',
 
-    stylus: './assets/blocks/page/page.styl',
+    stylus: [
+        './assets/blocks/**/+(page|!*).styl'
+    ],
     fonts: './assets/fonts/**/**.*'
 };
 
@@ -69,6 +72,18 @@ var configs = {
     },
     pug: {
         pretty: '\t'
+    },
+
+    watch: {
+        fonts: path.fonts,
+        stylus: './assets/blocks/**/*.styl',
+        pugs: './assets/templates/*.pug',
+        pugsBlock: './assets/blocks/**/*.pug',
+        images: './assets/images/*.{png,jpg,jpeg}',
+        imagesBlock: './assets/blocks/**/*.{png,jpg,jpeg}',
+        svg: path.assets + '/images/**/*.{svg,gif}',
+        svgBlock: path.assets + '/blocks/**/*.{svg,gif}',
+        vendorsCss: './assets/vendors/css/*.css'
     }
 };
 
@@ -103,7 +118,8 @@ gulp.task('stylus', function() {
         .pipe(sourcemaps.init())
         .pipe(stylus(
             {
-                use: rupture()
+                use: rupture(),
+                'import': [__dirname + '/assets/vendors/flex-grid-framework.styl']
             }
         ))
         .pipe(autoprefixer({
@@ -123,7 +139,8 @@ gulp.task('stylus:min', function() {
         .pipe(plumber(configs.plumberError))
         .pipe(stylus(
             {
-                use: rupture()
+                use: rupture(),
+                'import': [__dirname + '/assets/vendors/flex-grid-framework.styl']
             }
         ))
         .pipe(autoprefixer({
@@ -158,7 +175,7 @@ gulp.task('css:min', ['stylus:min', 'vendorCss']);
  * Сжимаем svg отдельно
  */
  gulp.task('svg', function() {
-     gulp.src([path.assets + '/images/**/*.svg', path.assets + '/blocks/**/*.svg'])
+     gulp.src([path.assets + '/images/**/*.{svg,gif}', path.assets + '/blocks/**/*.{svg,gif}'])
         .pipe(plumber(configs.plumberError))
  		.pipe(imagemin({svgoPlugins: [{removeViewBox: false}]}))
         .pipe(gulp.dest(path.public + '/images'))
@@ -228,20 +245,40 @@ gulp.task('clean', function(cb) {
  * Build
  */
 gulp.task('build', gulpsync.sync(['clean',['css:min', 'pug', 'fonts'], 'images:build']));
+gulp.task('final', gulpsync.sync(['clean',['css:min', 'pug', 'fonts'], 'images:build', 'webpack']));
 
 
 /**
  * Watch
  */
  gulp.task('watch', function() {
-     gulp.watch(path.assets + '/**/**/*.styl', ['stylus']);
-     gulp.watch(path.assets + '/**/**/*.pug', ['pug']);
-     gulp.watch(path.vendorCss[1], ['vendorCss']);
-     gulp.watch([path.assets + '/images/**/*.svg', path.assets + '/blocks/**/*.svg'], ['svg']);
-     gulp.watch([path.assets + '/images/**/*.{png,jpg,jpeg}'], ['images:move']);
-     gulp.watch([path.assets + '/blocks/**/*.{png,jpg,jpeg}'], ['images:move']);
-     gulp.watch(path.fonts, ['fonts']);
-     gulp.watch(path.public + '/*.html').on('change', reload);
+     watch([configs.watch.stylus], function(event,cb) {
+         gulp.start('stylus');
+     });
+     watch([configs.watch.pugs], function(event,cb) {
+         gulp.start('pug');
+     });
+     watch([configs.watch.pugsBlock], function(event,cb) {
+         gulp.start('pug');
+     });
+     watch([configs.watch.fonts], function(event,cb) {
+         gulp.start('fonts');
+     });
+     watch([configs.watch.vendorsCss], function(event,cb) {
+         gulp.start('vendorCss');
+     });
+     watch([configs.watch.svg], function(event,cb) {
+         gulp.start('svg');
+     });
+     watch([configs.watch.svgBlock], function(event,cb) {
+         gulp.start('svg');
+     });
+     watch([configs.watch.images], function(event,cb) {
+         gulp.start('images:move');
+     });
+     watch([configs.watch.imagesBlock], function(event,cb) {
+         gulp.start('images:move');
+     });
  });
 
 /**

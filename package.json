@@ -4,26 +4,26 @@
   "description": "Gulp + Webpack build for frondend",
   "main": "gulpfile.js",
   "scripts": {
-    "start": "gulp",
-    "prebuild": "gulp build",
-	"clean": "gulp clean"
+    "start": "set NODE_ENV=development&&gulp",
+    "prebuild": "set NODE_ENV=production&&gulp final",
+    "clean": "gulp clean"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/edDimensi/webps-build.git"
+    "url": "git+https://github.com/edDimensi/gulpPack.git"
   },
   "keywords": [
     "webpack",
     "pug",
     "stylus",
-	"gulp"
+    "gulp"
   ],
   "author": "Nikita Nafranets <eddimensi@gmail.com> (http://vk.com/dimensi)",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/edDimensi/webps-build/issues"
+    "url": "https://github.com/edDimensi/gulpPack/issues"
   },
-  "homepage": "https://github.com/edDimensi/webps-build#readme",
+  "homepage": "https://github.com/edDimensi/gulpPack#readme",
   "dependencies": {
     "babel-core": "^6.14.0",
     "babel-loader": "^6.2.5",
@@ -45,7 +45,9 @@
     "gulp-stylus": "^2.5.0",
     "gulp-sync": "^0.1.4",
     "gulp-tinypng-compress": "^1.2.1",
+    "gulp-watch": "^4.3.10",
     "jquery": "^3.1.1",
+    "normalize.css": "^4.2.0",
     "rimraf": "^2.5.4",
     "rupture": "^0.6.1",
     "webpack": "^1.13.2",

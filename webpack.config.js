@@ -82,7 +82,9 @@ module.exports = {
             minChunks: minChunks
         }),
         new webpack.ProvidePlugin({
-            $: 'jquery/dist/jquery.min'
+            $: 'jquery/dist/jquery.min',
+			jQuery: 'jquery/dist/jquery.min',
+			"window.jQuery": 'jquery/dist/jquery.min'
         }),
     ],
 
@@ -101,7 +103,7 @@ module.exports = {
      * TODO: ПРОВЕРЬ!
      */
     resolve: {
-        root: [jsPath, vendorsJsPath],
+        root: [jsPath, vendorsJsPath, blocksPath],
         modulesDirectories: ['node_modules'],
         extensions: ['', '.js',]
     },
@@ -124,9 +126,7 @@ module.exports = {
         loaders: [
             {
                 test: /\.js$/,
-                include: [
-                    jsPath
-                ],
+                include: [ jsPath, blocksPath],
                 loader: 'babel',
                 query: {
                     presets: ['es2015'],
