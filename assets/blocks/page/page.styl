@@ -23,7 +23,7 @@ $full-absolute
 *:focus
 	outline none
 html
-	font-size '%spx' % $base-size
+	font-size $base-size
 	font-family 'Roboto', sans-serif
 	color black
 	font-weight 400
@@ -38,3 +38,5 @@ p
 a
 	text-decoration none
 	color inherit
+
+@import "../../blocks/!(page)/*.styl"
