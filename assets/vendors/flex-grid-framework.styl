@@ -1,0 +1,180 @@
+/*
+Flex Grid Framework
+Platform: Stylus
+
+Original repository:
+https://github.com/afonsopacifer/flex-grid-framework
+Website:
+http://flexgridframework.com/
+Author:
+Afonso Pacifer (afonsopacifer.com)
+Version: 1.3.0
+Licence:
+MIT - https://github.com/afonsopacifer/flex-grid-framework/blob/master/licence.md
+* /
+
+/* Configs
+------------------------------------------------*/
+flx-max-width = 100%
+flx-margin = 0
+flx-padding = 0
+flx-column_number = 12
+flx-column_width = (100% / flx-column_number) - 2 * flx-margin
+
+$margin
+    margin-right flx-margin
+    margin-left flx-margin
+
+$padding
+    padding-right flx-padding
+    padding-left flx-padding
+
+/* Row
+------------------------------------------------*/
+$row
+    margin-left auto
+    margin-right auto
+    max-width flx-max-width
+    display -webkit-box
+    display -webkit-flex
+    display -ms-flexbox
+    display flex
+    -webkit-flex-wrap wrap
+    -ms-flex-wrap wrap
+    flex-wrap wrap
+    box-sizing border-box
+
+/* Columns
+------------------------------------------------*/
+
+// mixin
+col(number-of-cols)
+    if (number-of-cols is a 'unit')
+        width (number-of-cols * flx-column_width) + (((number-of-cols - 1) * 2) * flx-margin)
+
+    if (number-of-cols == flex)
+        -webkit-box-flex auto
+        -moz-box-flex auto
+        -webkit-flex auto
+        -ms-flex auto
+        flex auto
+
+    @extend $margin
+    @extend $padding
+    box-sizing border-box
+
+// extends the mixin :)
+$col-flex
+    col(flex)
+
+for i in (1..flx-column_number)
+    $col-{i}
+        col(i)
+
+// for media queries
+mq-col(number-of-cols)
+    width (number-of-cols * flx-column_width) + (((number-of-cols - 1) * 2) * flx-margin)
+
+/* Offset
+------------------------------------------------*/
+
+// mixin
+mq-offset(number-of-offset = 0)
+    margin-left (number-of-offset * flx-column_width) + (((number-of-offset - 1) * 2) * flx-margin) + (3 * flx-margin)
+
+// extends the mixin :)
+for i in (0..(flx-column_number - 1))
+    $offset-{i}
+        mq-offset(i)
+
+/* Flex Container
+------------------------------------------------*/
+
+// mixin
+mq-justify(content-value)
+    if (content-value == left)
+        -webkit-box-pack start
+        -webkit-justify-content flex-start
+        -ms-flex-pack start
+        justify-content flex-start
+
+    if (content-value == right)
+        -webkit-box-pack end
+        -webkit-justify-content flex-end
+        -ms-flex-pack end
+        justify-content flex-end
+
+    if (content-value == center)
+        -webkit-box-pack center
+        -webkit-justify-content center
+        -ms-flex-pack center
+        justify-content center
+
+    if (content-value == between)
+        -webkit-box-pack justify
+        -webkit-justify-content space-between
+        -ms-flex-pack justify
+        justify-content space-between
+
+    if (content-value == around)
+        -webkit-justify-content space-around
+        -ms-flex-pack distribute
+        justify-content space-around
+
+// extends the mixin :)
+$justify-left
+    mq-justify(left)
+
+$justify-right
+    mq-justify(right)
+
+$justify-center
+    mq-justify(center)
+
+$justify-between
+    mq-justify(between)
+
+$justify-around
+    mq-justify(around)
+
+/* Flex Itens
+------------------------------------------------*/
+
+// mixin
+mq-vertical-align(vertical-value)
+    if (vertical-value == top)
+        -webkit-box-align start
+        -webkit-align-items flex-start
+        -ms-flex-align start
+        align-items flex-start
+        -webkit-align-content flex-start
+        -ms-flex-line-pack start
+        align-content flex-start
+
+    if (vertical-value == middle)
+        -webkit-box-align center
+        -webkit-align-items center
+        -ms-flex-align center
+        align-items center
+        -webkit-align-content center
+        -ms-flex-line-pack center
+        align-content center
+
+    if (vertical-value == bottom)
+        -webkit-box-align end
+        -webkit-align-items flex-end
+        -ms-flex-align end
+        align-items flex-end
+        -webkit-align-content flex-end
+        -ms-flex-line-pack end
+        align-content flex-end
+
+// extends the mixin :)
+$vertical-align-top
+    mq-vertical-align(top)
+
+$vertical-align-middle
+    mq-vertical-align(middle)
+
+$vertical-align-bottom
+    mq-vertical-align(bottom)
