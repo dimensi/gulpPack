@@ -287,6 +287,9 @@ gulp.task('watch', function() {
 	watch([configs.watch.imagesBlock], function(event, cb) {
 		gulp.start('images:move');
 	});
+	watch([path.public + '/js/*.js'], function(event, cb) {
+		reload();
+	});
 });
 
 /**
