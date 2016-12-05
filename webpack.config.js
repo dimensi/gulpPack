@@ -6,11 +6,11 @@ const webpack = require('webpack');
 
 /** Пути */
 const paths = {
-	assets: path.join(__dirname, 'assets'),
+	assets: path.join(__dirname, 'app'),
 	public: path.join(__dirname, 'public'),
-	blocks: path.join(__dirname, 'assets', 'blocks'),
-	js: path.join(__dirname, 'assets', 'javascript'),
-	vendors: path.join(__dirname, 'assets', 'vendors', 'js')
+	blocks: path.join(__dirname, 'app', 'blocks'),
+	js: path.join(__dirname, 'app', 'scripts'),
+	vendors: path.join(__dirname, 'app', 'vendors', 'js')
 };
 
 
@@ -29,14 +29,6 @@ module.exports = {
 	 * common: "./javascript/common" и или можно включить в common другие файлы
 	 * common: ["./javascript/welcome", "./javascript/common"]
 	 */
-	entry: {
-		index: 'index',
-		program: 'program',
-		nominations: 'nominations',
-		laureats: 'laureats',
-		gallery: 'gallery',
-		common: 'common'
-	},
 
 	/**
 	 * Куда сохранять js
