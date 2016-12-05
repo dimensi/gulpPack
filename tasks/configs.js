@@ -1,4 +1,9 @@
-const path = require('path');
+const getData = require('jade-get-data');
+
+const data = {
+	getData: getData('app/data'),
+	jv0: 'javascript:void(0);'
+};
 
 const onError = function(err) {
 	console.error('!ERROR!');
@@ -27,7 +32,8 @@ module.exports = {
 
 	pug: {
 		pretty: '\t',
-		basedir: __dirname
+		basedir: __dirname,
+		data
 	},
 
 	autoprefixer: {
