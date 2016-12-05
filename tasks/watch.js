@@ -1,28 +1,21 @@
 const gulp          = require('gulp');
 const watch         = require('gulp-watch');
-const browserSync   = require('browser-sync').create();
 const paths         = require('../tasks/paths.js');
 
 gulp.task('watch', function () {
-	watch([paths.app + '/styles/**/*.styl', paths.app + '/blocks/**/*.styl'], function (event, cb) {
+	watch([paths.app + '/styles/**/*.styl', paths.app + '/blocks/**/*.styl'], function () {
 		gulp.start('stylus');
 	});
-	watch([paths.app + '/pages/**/*.pug', paths.app + '/blocks/**/*.pug'], function (event, cb) {
+	watch([paths.app + '/pages/**/*.pug', paths.app + '/blocks/**/*.pug'], function () {
 		gulp.start('pug');
 	});
-	watch([paths.assets], function (event, cb) {
+	watch([paths.assets], function () {
 		gulp.start('assets');
-		browserSync.reload();
 	});
-	watch([paths.app + 'vendors/**/*.css'], function (event, cb) {
+	watch([paths.app + '/vendors/**/*.css'], function () {
 		gulp.start('vendorCss');
 	});
-	watch([paths.app + 'images/**/*.{svg, gif}', paths.app + 'blocks/**/*.{svg, gif}'], function (event, cb) {
-		gulp.start('svg');
-		browserSync.reload();
-	});
-	watch([paths.app + 'images/**/*.{png,jpg,jpeg}', paths.app + 'blocks/**/*.{png,jpg,jpeg}'], function (event, cb) {
-		gulp.start('images:move');
-		browserSync.reload();
+	watch([paths.app + '/images/*.*', paths.app + '/blocks/**/*.{svg,png,jpeg,jpg,gif}'], function() {
+		gulp.start('images');
 	});
 });

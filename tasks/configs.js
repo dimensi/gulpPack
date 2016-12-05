@@ -10,7 +10,7 @@ module.exports = {
 		server: {
 			baseDir: './public/'
 		},
-		reloadDelay: 1500,
+		reloadDebounce: 2000,
 		tunnel: false,
 		host: 'localhost',
 		port: 3000,

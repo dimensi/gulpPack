@@ -23,7 +23,7 @@ gulp.task('stylus', function () {
 		.pipe(autoprefixer(configs.autoprefixer))
 		.pipe(sourcemaps.write())
 		.pipe(gulp.dest(paths.public + '/css'))
-		.pipe(browserSync.stream())
+		.pipe(browserSync.reload({ stream: true }))
 		.pipe(notify({
 			title: 'Task Stylus',
 			message: 'Завершен'
