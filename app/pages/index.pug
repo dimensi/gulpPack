@@ -1,7 +1,6 @@
 extends ../blocks/layout-default/layout-default
 
-block head
+prepend head
 	title HI
 block content
-	script.
-		alert('21');
+	+scripts(['common.js', 'app.js'])
