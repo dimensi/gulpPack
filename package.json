@@ -54,6 +54,7 @@
     "gulp-watch": "^4.3.11",
     "imports-loader": "^0.6.5",
     "jquery": "^3.1.1",
+    "node-notifier": "^4.6.1",
     "require-dir": "^0.3.1",
     "rimraf": "^2.5.4",
     "rupture": "^0.6.2",

@@ -1,8 +1,8 @@
 const gulp         = require('gulp');
 const autoprefixer = require('gulp-autoprefixer');
 const plumber      = require('gulp-plumber');
-const cleanCss     = require('gulp-clean-css');
 const concatCss    = require('gulp-concat-css');
+const cleanCss     = require('gulp-clean-css');
 const browserSync  = require('browser-sync').create();
 const notify       = require('gulp-notify');
 const paths        = require('../tasks/paths');
@@ -14,5 +14,18 @@ gulp.task('vendorCss', function () {
 		.pipe(autoprefixer(configs.autoprefixer))
 		.pipe(concatCss('all-styles.css'))
 		.pipe(gulp.dest(paths.public + '/css'))
-		.pipe(browserSync.stream());
+		.pipe(browserSync.stream())
+		.pipe(notify({
+			title: 'Таск VendorCss',
+			message: 'Завершен'
+		}));
+});
+
+gulp.task('vendorCss:min', function () {
+	return gulp.src(paths.vendors + '/css/**/*')
+		.pipe(plumber(configs.plumberError))
+		.pipe(autoprefixer(configs.autoprefixer))
+		.pipe(concatCss('all-styles.css'))
+		.pipe(cleanCss())
+		.pipe(gulp.dest(paths.public + '/css'));
 });

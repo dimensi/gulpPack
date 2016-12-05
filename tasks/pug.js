@@ -16,5 +16,9 @@ gulp.task('pug', function () {
 			hasChanged: changed.compareSha1Digest
 		}))
 		.pipe(gulp.dest(paths.public))
-		.pipe(browserSync.stream());
+		.pipe(browserSync.stream())
+		.pipe(notify({
+			title: 'Task Pug',
+			message: 'Завершен'
+		}));
 });

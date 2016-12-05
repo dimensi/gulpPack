@@ -5,9 +5,9 @@ const sourcemaps   = require('gulp-sourcemaps');
 const plumber      = require('gulp-plumber');
 const rupture      = require('rupture');
 const browserSync  = require('browser-sync').create();
-const path         = require('path');
 const notify       = require('gulp-notify');
 const stylint      = require('gulp-stylint');
+const cleanCss     = require('gulp-clean-css');
 const paths        = require('../tasks/paths.js');
 const configs      = require('../tasks/configs');
 
@@ -23,6 +23,22 @@ gulp.task('stylus', function () {
 		.pipe(autoprefixer(configs.autoprefixer))
 		.pipe(sourcemaps.write())
 		.pipe(gulp.dest(paths.public + '/css'))
-		.pipe(notify("Stylus готов"))
-		.pipe(browserSync.stream());
+		.pipe(browserSync.stream())
+		.pipe(notify({
+			title: 'Task Stylus',
+			message: 'Завершен'
+		}));
+});
+
+gulp.task('stylus:min', function () {
+	return gulp.src(paths.stylus)
+		.pipe(plumber(configs.plumberError))
+		.pipe(stylint())
+		.pipe(stylint.reporter())
+		.pipe(stylus({
+			use: rupture()
+		}))
+		.pipe(autoprefixer(configs.autoprefixer))
+		.pipe(cleanCss())
+		.pipe(gulp.dest(paths.public + '/css'));
 });

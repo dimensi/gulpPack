@@ -4,7 +4,6 @@ const webpackConfig = require('../webpack.config');
 const webpack       = webpackStream.webpack;
 const combiner      = require('stream-combiner2').obj;
 const production    = process.env.NODE_ENV === 'production';
-const notify        = require('gulp-notify');
 const paths         = require('../tasks/paths.js');
 
 gulp.task('webpack', (cb) => {

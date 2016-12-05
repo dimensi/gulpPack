@@ -1,7 +1,6 @@
 const gulp          = require('gulp');
 const watch         = require('gulp-watch');
 const browserSync   = require('browser-sync').create();
-const notify        = require('gulp-notify');
 const paths         = require('../tasks/paths.js');
 
 gulp.task('watch', function () {

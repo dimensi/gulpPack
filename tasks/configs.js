@@ -1,12 +1,14 @@
 const path = require('path');
+
 const onError = function(err) {
 	console.error('!ERROR!');
 	console.error(err);
 };
+
 module.exports = {
 	browserConfig: {
 		server: {
-			baseDir: "./public/"
+			baseDir: './public/'
 		},
 		reloadDelay: 1500,
 		tunnel: false,
@@ -25,7 +27,7 @@ module.exports = {
 
 	pug: {
 		pretty: '\t',
-		basedir: path.join(__dirname, 'app')
+		basedir: __dirname
 	},
 
 	autoprefixer: {
