@@ -19,7 +19,7 @@ gulp.task('zip', () => {
 	const datetime = process.env.ZIP_DATE_TIME ? '-' + getDateTime() : '';
 	const zipName = 'dist' + datetime + '.zip';
 
-	gulp.src(['../public/**/*'])
+	gulp.src([path.join(__dirname, '..') + '/public/**/*'])
 		.pipe(zip(zipName))
-		.pipe(gulp.dest(path.join(__dirname, '..')));
+		.pipe(gulp.dest('.'));
 });
