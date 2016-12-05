@@ -1,5 +1,3 @@
-'use strict';
-
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const path = require('path');
 const webpack = require('webpack');
@@ -55,7 +53,7 @@ module.exports = {
 	/**
 	 * Собираю source-map, разные при разных режимах
 	 */
-	devtool: NODE_ENV == 'development' ? 'cheap-module-source-map' : 'source-map',
+	devtool: NODE_ENV == 'development' ? 'source-map' : null,
 
 	/**
 	 * Подключаю плагины
@@ -76,10 +74,9 @@ module.exports = {
 			minChunks: minChunks
 		}),
 		new webpack.ProvidePlugin({
-			$: 'jquery/dist/jquery.min',
-			jQuery: 'jquery/dist/jquery.min',
-			'window.jQuery': 'jquery/dist/jquery.min',
-			jquery: 'jquery/dist/jquery.min'
+			$: 'jquery',
+			jQuery: 'jquery',
+			'window.jQuery': 'jquery',
 		})
 	],
 
@@ -100,10 +97,8 @@ module.exports = {
 	resolve: {
 		root: [paths.js, paths.vendors, paths.blocks],
 		alias: {
-			jQuery: 'jquery/dist/jquery.min',
-			jquery: 'jquery/dist/jquery.min',
-			'masonry': 'masonry-layout',
-			'isotope': 'isotope-layout'
+			jQuery: 'jquery',
+			jquery: 'jquery',
 		},
 		modulesDirectories: ['node_modules'],
 		extensions: ['', '.js', ]

@@ -33,5 +33,5 @@ node_modules
 #build directory
 public
 
-assets/compressed
-assets/.tinypng-sigs
+app/compressed
+app/.tinypng-sigs
