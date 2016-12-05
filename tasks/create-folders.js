@@ -6,7 +6,8 @@ const dirs = [
 	'./app/assets/fonts',
 	'./app/images',
 	'./app/vendors/css',
-	'./app/vendors/js'
+	'./app/vendors/js',
+	'./app/data'
 ];
 
 gulp.task('mkdirs', function() {
