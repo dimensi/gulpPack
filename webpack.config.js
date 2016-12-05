@@ -91,8 +91,6 @@ module.exports = {
 
 	/**
 	 * Указываю пути где надо искать
-	 * По моему я нахимичил с root..., оно работает как-то не так, как я хочу
-	 * TODO: ПРОВЕРЬ!
 	 */
 	resolve: {
 		root: [paths.js, paths.vendors, paths.blocks],
@@ -121,7 +119,7 @@ module.exports = {
 
 		loaders: [{
 			test: /\.js$/,
-			include: [paths.js, paths.blocks],
+			include: [paths.js, paths.blocks, paths.vendors],
 			loader: 'babel',
 			query: {
 				presets: ['es2015'],

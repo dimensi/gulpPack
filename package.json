@@ -6,7 +6,7 @@
   "scripts": {
     "first:start": "mkdir assets\\fonts && mkdir assets\\images && mkdir assets\\js && mkdir assets\\templates && mkdir assets\\vendors\\js && mkdir assets\\vendors\\css",
     "start": "set NODE_ENV=development&&gulp",
-    "prebuild": "set NODE_ENV=production&&gulp final",
+    "build": "set NODE_ENV=production&&gulp build:final",
     "clean": "gulp clean"
   },
   "repository": {
