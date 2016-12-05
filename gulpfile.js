@@ -23,6 +23,7 @@ const path          = require('path');
 const debug         = require('gulp-debug');
 const named         = require('vinyl-named');
 const production    = process.env.NODE_ENV === 'production';
+const notify        = require('gulp-notify');
 const onError = function(err) {
 	console.error('!ERROR!');
 	console.error(err);
@@ -98,6 +99,7 @@ gulp.task('stylus', function () {
 		.pipe(autoprefixer(configs.autoprefixer))
 		.pipe(sourcemaps.write())
 		.pipe(gulp.dest(paths.public + '/css'))
+		.pipe(notify("Stylus готов"))
 		.pipe(browserSync.stream());
 });
 
@@ -126,7 +128,6 @@ gulp.task('svg', function () {
 			}]
 		}))
 		.pipe(gulp.dest(paths.public + '/images'))
-		.pipe(browserSync.reload({ stream: true }));
 });
 
 
@@ -152,7 +153,6 @@ gulp.task('images:move', ['images'], function () {
 	return gulp.src(paths.app + "/compressed/**/*")
 		.pipe(plumber(configs.plumberError))
 		.pipe(gulp.dest(paths.public + '/images'))
-		.pipe(browserSync.reload({ stream: true }));
 });
 
 /**
@@ -164,7 +164,6 @@ gulp.task('assets', function () {
 	return gulp.src(paths.assets)
 		.pipe(plumber(configs.plumberError))
 		.pipe(gulp.dest(paths.public))
-		.pipe(browserSync.reload({ stream: true }));
 })
 
 gulp.task('build', gulpsync.sync(['clean', ['stylus', 'vendorCss', 'pug', 'assets'], 'images:build']));
@@ -185,47 +184,50 @@ gulp.task('watch', function () {
 	});
 	watch([paths.assets], function (event, cb) {
 		gulp.start('assets');
+		browserSync.reload();
 	});
 	watch([paths.app + 'vendors/**/*.css'], function (event, cb) {
 		gulp.start('vendorCss');
 	});
 	watch([paths.app + 'images/**/*.{svg, gif}', paths.app + 'blocks/**/*.{svg, gif}'], function (event, cb) {
 		gulp.start('svg');
+		browserSync.reload();
 	});
 	watch([paths.app + 'images/**/*.{png,jpg,jpeg}', paths.app + 'blocks/**/*.{png,jpg,jpeg}'], function (event, cb) {
 		gulp.start('images:move');
+		browserSync.reload();
 	});
 });
 
-// gulp.task('webpack', (cb) => {
+gulp.task('webpack', (cb) => {
 
-// 	let firstBuildReady = false;
-// 	const done = (err) => {
-// 		firstBuildReady = true;
-// 		if (err) {
-// 			return null;
-// 		}
-// 	};
+	let firstBuildReady = false;
+	const done = (err) => {
+		firstBuildReady = true;
+		if (err) {
+			return null;
+		}
+	};
 
-// 	if (production) {
-// 		webpackConfig.plugins.push(
-// 			new webpack.optimize.UglifyJsPlugin()
-// 		)
-// 	}
+	if (production) {
+		webpackConfig.plugins.push(
+			new webpack.optimize.UglifyJsPlugin()
+		)
+	}
 
-// 	return combiner(
-// 		gulp.src(paths.app + '/scripts/**/*.js'),
-// 		debug({ title: 'webpack' }),
-// 		named(),
-// 		webpackStream(webpackConfig, null, done),
-// 		gulp.dest(paths.public)
-// 			.on('data', () => {
-// 				if (firstBuildReady) {
-// 					cb();
-// 				}
-// 			})
-// 	);
+	return combiner(
+		gulp.src(paths.app + '/scripts/**/*.js'),
+		debug({ title: 'webpack' }),
+		named(),
+		webpackStream(webpackConfig, null, done),
+		gulp.dest(paths.public)
+			.on('data', () => {
+				if (firstBuildReady) {
+					cb();
+				}
+			})
+	);
 
-// });
+});
 
 gulp.task('default', gulpsync.sync(['build', 'watch', ['browser-sync']]));
