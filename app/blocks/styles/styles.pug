@@ -2,4 +2,4 @@ mixin links(links)
 	each src in links
 		- var isExternalScript = /^(?:https?\:)?\/\//i;
 		- src = isExternalScript.test(src) ? src : 'css/' + src;
-		script(rel='stylesheet' src=src)
+		link(href=src rel='stylesheet')
