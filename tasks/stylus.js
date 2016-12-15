@@ -8,6 +8,7 @@ const browserSync  = require('browser-sync').create();
 const notify       = require('gulp-notify');
 const stylint      = require('gulp-stylint');
 const cleanCss     = require('gulp-clean-css');
+const path         = require('path');
 const paths        = require('../tasks/paths.js');
 const configs      = require('../tasks/configs');
 
@@ -18,7 +19,9 @@ gulp.task('stylus', function () {
 		.pipe(stylint.reporter())
 		.pipe(sourcemaps.init())
 		.pipe(stylus({
-			use: rupture()
+			use: rupture(),
+			'include css': true,
+			include: path.join(__dirname, '..', 'node_modules')
 		}))
 		.pipe(autoprefixer(configs.autoprefixer))
 		.pipe(sourcemaps.write())
@@ -36,7 +39,9 @@ gulp.task('stylus:min', function () {
 		.pipe(stylint())
 		.pipe(stylint.reporter())
 		.pipe(stylus({
-			use: rupture()
+			use: rupture(),
+			'include css': true,
+			include: path.join(__dirname, '..', 'node_modules')
 		}))
 		.pipe(autoprefixer(configs.autoprefixer))
 		.pipe(cleanCss())

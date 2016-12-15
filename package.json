@@ -1,13 +1,14 @@
 {
   "name": "gulppack",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "description": "Gulp + Webpack build for frondend",
   "main": "gulpfile.js",
   "scripts": {
     "first:start": "gulp mkdirs",
     "start": "set NODE_ENV=development&&gulp",
     "build": "set NODE_ENV=production&&gulp build:final",
-    "clean": "gulp clean"
+    "clean": "gulp clean",
+	"zip": "gulp zip"
   },
   "repository": {
     "type": "git",

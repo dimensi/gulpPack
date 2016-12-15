@@ -2,4 +2,4 @@ mixin scripts(scripts)
 	each src in scripts
 		- var isExternalScript = /^(?:https?\:)?\/\//i;
 		- src = isExternalScript.test(src) ? src : 'js/' + src;
-		script(src=src type='text/javascript')
+		script(src=src)

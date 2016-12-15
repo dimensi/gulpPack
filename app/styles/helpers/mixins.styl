@@ -25,3 +25,17 @@ padding-x($padding)
 padding-y($padding)
 	padding-top $padding
 	padding-bottom $padding
+	
+border-arrow($side, $size, $color)
+	border $size solid transparent
+	if $side == 'left'
+		border-right-color $color
+	if $side == 'right'
+		border-left-color $color
+	if $side == 'bottom'
+		border-top-color $color
+	if $side == 'top'
+		border-bottom-color $color
+		
+em($px, $font-size = @font-size)
+	unit(round($px / $font-size, 2), 'em')
