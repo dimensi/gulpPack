@@ -1,13 +1,14 @@
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const path = require('path');
 const webpack = require('webpack');
+const HappyPack = require('happypack');
 
 /** Пути */
 const paths = {
 	assets: path.join(__dirname, 'app'),
 	public: path.join(__dirname, 'public'),
 	blocks: path.join(__dirname, 'app', 'blocks'),
-	js: path.join(__dirname, 'app', 'scripts'),
+	js: path.join(__dirname, 'app', 'javascripts'),
 	vendors: path.join(__dirname, 'app', 'vendors', 'js')
 };
 
@@ -32,9 +33,7 @@ module.exports = {
 	 * Куда сохранять js
 	 */
 	output: {
-		path: paths.public,
 		publicPath: '/js/', // паблик патч лучше его указазывать его разным для продакшен
-		filename: './js/[name].js',
 		library: '[name]',
 	},
 
@@ -76,7 +75,13 @@ module.exports = {
 		new webpack.ProvidePlugin({
 			$: 'jquery',
 			jQuery: 'jquery',
-			'window.jQuery': 'jquery',
+			'window.jQuery': 'jquery'
+		}),
+		new HappyPack({
+			loaders: ['babel'],
+			threads: 4,
+			verbose: false,
+			cache: true
 		})
 	],
 
@@ -99,7 +104,7 @@ module.exports = {
 			jquery: 'jquery',
 		},
 		modulesDirectories: ['node_modules'],
-		extensions: ['', '.js', ]
+		extensions: ['', '.js',]
 	},
 
 	/**
@@ -114,18 +119,17 @@ module.exports = {
 	/**
 	 * Подключаю лоадеры
 	 * 1. Babel
+	 * 2. Pug
 	 */
 	module: {
 
-		loaders: [{
-			test: /\.js$/,
-			include: [paths.js, paths.blocks, paths.vendors],
-			loader: 'babel',
-			query: {
-				presets: ['es2015'],
-				plugins: ['transform-runtime']
+		loaders: [
+			{
+				test: /\.js$/,
+				include: [paths.js, paths.blocks, paths.vendors],
+				loader: 'happypack/loader'
 			}
-		}, ]
+		]
 
 	}
 };
