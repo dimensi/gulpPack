@@ -35,3 +35,11 @@ public
 
 app/compressed
 app/.tinypng-sigs
+
+
+jsconfig.json
+typings/
+
+# Webpack plugin HappyPack
+# https://github.com/amireh/happypack
+.happypack
