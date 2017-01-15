@@ -1,16 +1,14 @@
-"use strict";
-
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const path = require('path');
 const webpack = require('webpack');
 
 /** Пути */
 const paths = {
-	assets: path.join(__dirname, 'assets'),
+	assets: path.join(__dirname, 'app'),
 	public: path.join(__dirname, 'public'),
-	blocks: path.join(__dirname, 'assets', 'blocks'),
-	js: path.join(__dirname, 'assets', 'javascript'),
-	vendors: path.join(__dirname, 'assets', 'vendors', 'js')
+	blocks: path.join(__dirname, 'app', 'blocks'),
+	js: path.join(__dirname, 'app', 'scripts'),
+	vendors: path.join(__dirname, 'app', 'vendors', 'js')
 };
 
 
@@ -29,9 +27,6 @@ module.exports = {
 	 * common: "./javascript/common" и или можно включить в common другие файлы
 	 * common: ["./javascript/welcome", "./javascript/common"]
 	 */
-	entry: {
-		index: "index"
-	},
 
 	/**
 	 * Куда сохранять js
@@ -58,7 +53,7 @@ module.exports = {
 	/**
 	 * Собираю source-map, разные при разных режимах
 	 */
-	devtool: NODE_ENV == 'development' ? 'cheap-module-source-map' : 'source-map',
+	devtool: NODE_ENV == 'development' ? 'source-map' : null,
 
 	/**
 	 * Подключаю плагины
@@ -74,14 +69,14 @@ module.exports = {
 			NODE_ENV: JSON.stringify(NODE_ENV)
 		}),
 		new webpack.NoErrorsPlugin(),
-		// new webpack.optimize.CommonsChunkPlugin({
-		//     name: "common",
-		//     minChunks: minChunks
-		// }),
+		new webpack.optimize.CommonsChunkPlugin({
+			name: 'common',
+			minChunks: minChunks
+		}),
 		new webpack.ProvidePlugin({
-			$: 'jquery/dist/jquery.min',
-			jQuery: 'jquery/dist/jquery.min',
-			"window.jQuery": 'jquery/dist/jquery.min'
+			$: 'jquery',
+			jQuery: 'jquery',
+			'window.jQuery': 'jquery',
 		})
 	],
 
@@ -96,13 +91,12 @@ module.exports = {
 
 	/**
 	 * Указываю пути где надо искать
-	 * По моему я нахимичил с root..., оно работает как-то не так, как я хочу
-	 * TODO: ПРОВЕРЬ!
 	 */
 	resolve: {
 		root: [paths.js, paths.vendors, paths.blocks],
 		alias: {
-			jQuery: "jquery/dist/jquery.min"
+			jQuery: 'jquery',
+			jquery: 'jquery',
 		},
 		modulesDirectories: ['node_modules'],
 		extensions: ['', '.js', ]
@@ -125,7 +119,7 @@ module.exports = {
 
 		loaders: [{
 			test: /\.js$/,
-			include: [paths.js, paths.blocks],
+			include: [paths.js, paths.blocks, paths.vendors],
 			loader: 'babel',
 			query: {
 				presets: ['es2015'],

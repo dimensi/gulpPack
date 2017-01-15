@@ -1,0 +1,5 @@
+mixin links(links)
+	each src in links
+		- var isExternalScript = /^(?:https?\:)?\/\//i;
+		- src = isExternalScript.test(src) ? src : 'css/' + src;
+		link(href=src rel='stylesheet')

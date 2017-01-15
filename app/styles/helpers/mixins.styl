@@ -1,0 +1,41 @@
+size(w, h = w)
+	width w
+	height h
+full-absolute()
+	position absolute
+	top 0
+	left 0
+	size 100% 100%
+// Set margin on left & right
+margin-x($margin)
+	margin-left $margin
+	margin-right $margin
+
+// Set margin on top & bottom
+margin-y($margin)
+	margin-top $margin
+	margin-bottom $margin
+
+// Set pading on left & right
+padding-x($padding)
+	padding-left $padding
+	padding-right $padding
+
+// Set padding on top & bottom
+padding-y($padding)
+	padding-top $padding
+	padding-bottom $padding
+	
+border-arrow($side, $size, $color)
+	border $size solid transparent
+	if $side == 'left'
+		border-right-color $color
+	if $side == 'right'
+		border-left-color $color
+	if $side == 'bottom'
+		border-top-color $color
+	if $side == 'top'
+		border-bottom-color $color
+		
+em($px, $font-size = @font-size)
+	unit(round($px / $font-size, 2), 'em')
