@@ -1,6 +1,6 @@
 {
   "name": "gulppack",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Gulp + Webpack build for frondend",
   "main": "gulpfile.js",
   "scripts": {
