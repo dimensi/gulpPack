@@ -1,8 +1,5 @@
 ###gulpPack - мой личный заготовленный набор для верстки. 
 
-# FrontEnd Ruranobe
-Сборщик проекта на gulp 4 и webpack 1. 
-
 ## TOC ##
 
 
