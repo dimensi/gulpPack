@@ -11,6 +11,7 @@ const named = require('vinyl-named');
 const gulplog = require('gulplog');
 const mkdir = require('mkdirp');
 const notifier = require('node-notifier');
+const emitty = require('emitty').setup('app', 'pug');
 const getData = require('jade-get-data');
 const data = {
 	getData: getData('app/data'),
@@ -118,15 +119,17 @@ const config = {
 };
 
 
-gulp.task('mkdirs', () => {
+gulp.task('mkdirs', done => {
 	config.dirs.forEach(dir => {
 		mkdir(dir);
 	});
 	
-	return notifier.notify({
+	notifier.notify({
 		title: 'Папки',
 		message: 'Созданы'
 	});
+	
+	done()
 });
 
 gulp.task('clean', () => 
@@ -155,6 +158,7 @@ gulp.task('serve', () => {
 gulp.task('pug', () => 
 	gulp.src(paths.pugs)
 		.pipe($.plumber(config.plumber('PUG')))
+		.pipe($.if(global.watch, emitty.stream(global.emittyChangedFile)))
 		.pipe($.pug(config.pug))
 		.pipe($.changed(paths.public, {
 			extension: '.html',
@@ -247,8 +251,13 @@ gulp.task('webpack', callback	=> {
 });
 
 gulp.task('watch', () => {
+	global.watch = true;
+	
 	gulp.watch(paths.assets, gulp.series('assets')).on('change', browserSync.reload);
-	gulp.watch(paths.pugsWatch, gulp.series('pug'));
+	gulp.watch(paths.pugsWatch, gulp.series('pug'))
+	.on('all', (event, filepath) => {
+		global.emittyChangedFile = filepath;
+	});
 	gulp.watch(paths.stylusWatch, gulp.series('stylus'));
 	gulp.watch(paths.vendorsCss, gulp.series('vendorCss'));
 	gulp.watch(paths.imagesDev, gulp.series('images:dev')).on('change', browserSync.reload);
