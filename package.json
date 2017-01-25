@@ -1,10 +1,7 @@
 {
   "name": "gulppack",
-<<<<<<< HEAD
   "version": "1.1.1",
-=======
   "version": "1.1.0",
->>>>>>> master
   "description": "Gulp + Webpack build for frondend",
   "main": "gulpfile.js",
   "scripts": {
@@ -12,7 +9,8 @@
     "start": "cross-env NODE_ENV=development gulp",
     "build": "cross-env NODE_ENV=production gulp build",
     "clean": "gulp clean",
-    "zip": "gulp zip"
+    "zip": "gulp zip",
+	"create:block": "node makeBlock.js"
   },
   "repository": {
     "type": "git",
