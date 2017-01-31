@@ -34,7 +34,10 @@ const paths = {
 	],
 
 	stylus: './app/styles/app.styl',
-	stylusWatch: './app/blocks/**/*.styl',
+	stylusWatch: [
+		'./app/blocks/**/*.styl',
+		'./app/styles/**/*.styl'
+		],
 
 	vendorsCss: [
 		'./node_modules/normalize.css/normalize.css',
