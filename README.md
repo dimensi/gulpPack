@@ -3,7 +3,7 @@
 ## TOC ##
 
 
-- [FrontEnd Ruranobe](#frontend-ruranobe)
+- [GulpPack](#)
   * [Зависимости](#Зависимости)
   * [Первый запуск](#Первый-запуск)
   * [Команды](#Команды)
@@ -24,7 +24,6 @@
     + [`gulp serve`](#gulp-serve)
     + [`build:dev`](#builddev)
     + [`build`](#build)
-  * [Установленные пакеты](#Установленные-пакеты)
 
 
 ## Зависимости ##
@@ -72,55 +71,3 @@
 Собирает все и оптимизирует
 ### `gulp zip`
 Собирает архив из public
-
-
-## Установленные пакеты ##
-```
-    "babel-core": "^6.21.0",
-    "babel-loader": "^6.2.10",
-    "babel-plugin-transform-class-properties": "^6.19.0",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
-    "babel-plugin-transform-object-rest-spread": "^6.20.2",
-    "babel-plugin-transform-runtime": "^6.15.0",
-    "babel-preset-env": "^1.1.8",
-    "babel-preset-es2015": "^6.18.0",
-    "babel-runtime": "^6.20.0",
-    "bemto.pug": "^2.1.0",
-    "browser-sync": "^2.18.6",
-    "browser-sync-close-hook": "^1.0.5",
-    "cross-env": "^3.1.4",
-    "del": "^2.2.2",
-    "eslint": "^3.13.1",
-    "exports-loader": "^0.6.3",
-    "expose-loader": "^0.7.1",
-    "gulp": "gulpjs/gulp#4.0",
-    "gulp-autoprefixer": "^3.1.1",
-    "gulp-changed": "^1.3.2",
-    "gulp-clean-css": "^2.3.2",
-    "gulp-concat-css": "^2.3.0",
-    "gulp-debug": "^3.0.0",
-    "gulp-if": "^2.0.2",
-    "gulp-imagemin": "^3.1.1",
-    "gulp-load-plugins": "^1.4.0",
-    "gulp-notify": "^2.2.0",
-    "gulp-plumber": "^1.1.0",
-    "gulp-pug": "^3.2.0",
-    "gulp-sourcemaps": "^2.4.0",
-    "gulp-stylus": "^2.6.0",
-    "gulp-tinypng-compress": "^1.2.1",
-    "gulp-zip": "^3.2.0",
-    "gulplog": "^1.0.0",
-    "happypack": "^3.0.2",
-    "imports-loader": "^0.7.0",
-    "jade-get-data": "^1.0.1",
-    "jquery": "^3.1.1",
-    "mkdirp": "^0.5.1",
-    "node-notifier": "^4.6.1",
-    "normalize.css": "^5.0.0",
-    "rupture": "^0.6.2",
-    "script-loader": "^0.7.0",
-    "stream-combiner2": "^1.1.1",
-    "vinyl-named": "^1.1.0",
-    "webpack": "^1.14.0",
-    "webpack-stream": "jeroennoten/webpack-stream#patch-1"
- ```

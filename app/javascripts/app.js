@@ -1,1 +1,1 @@
-console.log('GulpPack console: Hello');
+console.log('GulpPack started');

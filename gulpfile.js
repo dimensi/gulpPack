@@ -7,6 +7,7 @@ const path = require('path');
 const rupture = require('rupture');
 const webpackStream = require('webpack-stream');
 const webpackOptions = require('./webpack.config');
+const webpack = require('webpack');
 const named = require('vinyl-named');
 const gulplog = require('gulplog');
 const mkdir = require('mkdirp');
@@ -37,7 +38,7 @@ const paths = {
 	stylusWatch: [
 		'./app/blocks/**/*.styl',
 		'./app/styles/**/*.styl'
-		],
+	],
 
 	vendorsCss: [
 		'./node_modules/normalize.css/normalize.css',
@@ -132,7 +133,7 @@ gulp.task('mkdirs', done => {
 		message: 'Созданы'
 	});
 	
-	done()
+	done();
 });
 
 gulp.task('clean', () => 
@@ -244,7 +245,7 @@ gulp.task('webpack', callback	=> {
 	return gulp.src(paths.javascripts)
 		.pipe($.plumber(config.plumber('WEBPACK')))
 		.pipe(named())
-		.pipe(webpackStream(webpackOptions, null, done))
+		.pipe(webpackStream(webpackOptions, webpack, done))
 		.pipe(gulp.dest(paths.public + '/js'))
 		.on('data', () => {
 			if (firstBuildReady) {

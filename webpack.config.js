@@ -28,10 +28,10 @@ module.exports = {
 	 * common: "./javascript/common" и или можно включить в common другие файлы
 	 * common: ["./javascript/welcome", "./javascript/common"]
 	 */
-
 	/**
 	 * Куда сохранять js
 	 */
+
 	output: {
 		publicPath: '/js/', // паблик патч лучше его указазывать его разным для продакшен
 		library: '[name]',
@@ -52,7 +52,7 @@ module.exports = {
 	/**
 	 * Собираю source-map, разные при разных режимах
 	 */
-	devtool: NODE_ENV == 'development' ? 'source-map' : null,
+	devtool: NODE_ENV == 'development' ? 'source-map' : false,
 
 	/**
 	 * Подключаю плагины
@@ -67,7 +67,7 @@ module.exports = {
 		new webpack.DefinePlugin({
 			NODE_ENV: JSON.stringify(NODE_ENV)
 		}),
-		new webpack.NoErrorsPlugin(),
+		new webpack.NoEmitOnErrorsPlugin(),
 		new webpack.optimize.CommonsChunkPlugin({
 			name: 'common',
 			minChunks: minChunks
@@ -78,8 +78,8 @@ module.exports = {
 			'window.jQuery': 'jquery'
 		}),
 		new HappyPack({
-			loaders: ['babel'],
-			threads: 4,
+			loaders: ['babel-loader'],
+			threads: 2,
 			verbose: false,
 			cache: true
 		})
@@ -98,22 +98,25 @@ module.exports = {
 	 * Указываю пути где надо искать
 	 */
 	resolve: {
-		root: [paths.js, paths.vendors, paths.blocks],
+		modules: [
+			paths.js,
+			paths.vendors,
+			paths.blocks,
+			'node_modules'
+		],
 		alias: {
 			jQuery: 'jquery',
 			jquery: 'jquery',
 		},
-		modulesDirectories: ['node_modules'],
-		extensions: ['', '.js',]
+		extensions: ['.js',]
 	},
 
 	/**
 	 * Указываю пути для лоадеров
 	 */
 	resolveLoader: {
-		modulesDirectories: ['node_modules'],
-		moduleTemplates: ['*-loader', '*'],
-		extensions: ['', '.js']
+		modules: ['node_modules'],
+		extensions: ['.js']
 	},
 
 	/**
@@ -123,7 +126,7 @@ module.exports = {
 	 */
 	module: {
 
-		loaders: [
+		rules: [
 			{
 				test: /\.js$/,
 				include: [paths.js, paths.blocks, paths.vendors],
