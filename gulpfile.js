@@ -132,7 +132,7 @@ gulp.task('mkdirs', done => {
 		title: 'Папки',
 		message: 'Созданы'
 	});
-	
+
 	done();
 });
 

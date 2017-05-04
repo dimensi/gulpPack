@@ -1,10 +1,9 @@
 {
   "name": "gulppack",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Gulp + Webpack build for frondend",
   "main": "gulpfile.js",
   "scripts": {
-    "postinstall": "npm run first:start",
     "first:start": "gulp mkdirs",
     "start": "cross-env NODE_ENV=development gulp",
     "build": "cross-env NODE_ENV=production gulp build",
