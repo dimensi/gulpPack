@@ -116,6 +116,10 @@ ansi-escapes@^1.1.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/ansi-escapes/-/ansi-escapes-1.4.0.tgz#d3a8a83b319aa67793662b13e761c7911422306e"
 
+ansi-font@0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/ansi-font/-/ansi-font-0.0.2.tgz#890301bd5841462fd39c0b7709afd1f525143331"
+
 ansi-regex@^2.0.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/ansi-regex/-/ansi-regex-2.1.1.tgz#c3b33ab5ee360d86e0e628f0468ae7ef27d654df"
@@ -1351,12 +1355,6 @@ clean-css@^3.3.0:
     commander "2.8.x"
     source-map "0.4.x"
 
-clean-css@^4.0.9:
-  version "4.0.12"
-  resolved "https://registry.yarnpkg.com/clean-css/-/clean-css-4.0.12.tgz#a02e61707f1840bd3338f54dbc9acbda4e772fa3"
-  dependencies:
-    source-map "0.5.x"
-
 cli-cursor@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/cli-cursor/-/cli-cursor-1.0.2.tgz#64da3f7d56a54412e59794bd62dc35295e8f2987"
@@ -1649,6 +1647,12 @@ css-parse@1.7.x:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/css-parse/-/css-parse-1.7.0.tgz#321f6cf73782a6ff751111390fc05e2c657d8c9b"
 
+css-tree@1.0.0-alpha19:
+  version "1.0.0-alpha19"
+  resolved "https://registry.yarnpkg.com/css-tree/-/css-tree-1.0.0-alpha19.tgz#949aa846c2c15b3979792e8fce05f6b6e3ebcad4"
+  dependencies:
+    source-map "^0.5.3"
+
 css@2.X, css@^2.0.0, css@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/css/-/css-2.2.1.tgz#73a4c81de85db664d4ee674f7d47085e3b2d55dc"
@@ -1657,6 +1661,12 @@ css@2.X, css@^2.0.0, css@^2.2.1:
     source-map "^0.1.38"
     source-map-resolve "^0.3.0"
     urix "^0.1.0"
+
+csso@^3.0.0:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/csso/-/csso-3.1.1.tgz#ab427584486c2e02e180327511b0b02a9179c272"
+  dependencies:
+    css-tree "1.0.0-alpha19"
 
 csso@~2.3.1:
   version "2.3.2"
@@ -2827,15 +2837,6 @@ gulp-changed@^2.0.0:
     gulp-util "^3.0.0"
     through2 "^2.0.0"
 
-gulp-clean-css@^3.0.4:
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/gulp-clean-css/-/gulp-clean-css-3.0.4.tgz#0c5ad8d045407c88f3c2b9f03570963967dcfd54"
-  dependencies:
-    clean-css "^4.0.9"
-    gulp-util "^3.0.8"
-    through2 "^2.0.3"
-    vinyl-sourcemaps-apply "^0.2.1"
-
 gulp-cli@^1.0.0:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/gulp-cli/-/gulp-cli-1.2.2.tgz#7392def6316c6e7939a4f296f3f540151ae3a275"
@@ -2870,6 +2871,14 @@ gulp-concat-css@^2.3.0:
     rework-import "^2.0.0"
     rework-plugin-url "^1.0.1"
     through2 "~1.1.1"
+
+gulp-csso@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/gulp-csso/-/gulp-csso-3.0.0.tgz#13d0add6663f4ca398f4d414ff8dcc349b219b2c"
+  dependencies:
+    csso "^3.0.0"
+    gulp-util "^3.0.6"
+    vinyl-sourcemaps-apply "^0.2.1"
 
 gulp-debug@^3.0.0:
   version "3.1.0"
@@ -5996,6 +6005,12 @@ ternary-stream@^2.0.1:
     fork-stream "^0.0.4"
     merge-stream "^1.0.0"
     through2 "^2.0.1"
+
+test@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/test/-/test-0.6.0.tgz#5986ac445ec17754322512d104ba32c8a63e938e"
+  dependencies:
+    ansi-font "0.0.2"
 
 text-table@~0.2.0:
   version "0.2.0"

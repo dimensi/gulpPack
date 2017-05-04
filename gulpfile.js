@@ -180,7 +180,7 @@ gulp.task('stylus', () =>
 		.pipe($.stylus(config.stylus))
 		.pipe($.autoprefixer(config.autoprefixer))
 		.pipe($.if(isDevelopment, $.sourcemaps.write('.')))
-		.pipe($.if(!isDevelopment, $.cleanCss()))
+		.pipe($.if(!isDevelopment, $.csso()))
 		.pipe(gulp.dest(paths.public + '/css'))
 		.pipe(browserSync.stream({match: '**/*.css'}))
 );
@@ -192,7 +192,7 @@ gulp.task('vendorCss', () =>
 		.pipe($.concatCss('all-styles.css', {
 			rebaseUrls: false
 		}))
-		.pipe($.if(!isDevelopment, $.cleanCss()))
+		.pipe($.if(!isDevelopment, $.csso()))
 		.pipe(gulp.dest(paths.public + '/css'))
 		.pipe(browserSync.stream())
 );
