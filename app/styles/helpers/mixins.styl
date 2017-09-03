@@ -39,3 +39,8 @@ border-arrow($side, $size, $color)
 		
 em($px, $font-size = @font-size)
 	unit(round($px / $font-size, 2), 'em')
+	
+locks(startFont, endFont, startView, endView)
+	m = (endFont - startFont) / (endView - startView)
+	b = unit(startFont - m * startView, px)
+	font-size "calc(%s + %s)" % (unit(m * 100, vw) b)
