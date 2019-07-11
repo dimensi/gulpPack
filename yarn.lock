@@ -116,10 +116,6 @@ ansi-escapes@^1.1.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/ansi-escapes/-/ansi-escapes-1.4.0.tgz#d3a8a83b319aa67793662b13e761c7911422306e"
 
-ansi-font@0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/ansi-font/-/ansi-font-0.0.2.tgz#890301bd5841462fd39c0b7709afd1f525143331"
-
 ansi-regex@^2.0.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/ansi-regex/-/ansi-regex-2.1.1.tgz#c3b33ab5ee360d86e0e628f0468ae7ef27d654df"
@@ -4052,8 +4048,8 @@ lodash.mapvalues@^4.4.0:
   resolved "https://registry.yarnpkg.com/lodash.mapvalues/-/lodash.mapvalues-4.6.0.tgz#1bafa5005de9dd6f4f26668c30ca37230cc9689c"
 
 lodash.merge@^4.4.0:
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.0.tgz#69884ba144ac33fe699737a6086deffadd0f89c5"
+  version "4.6.2"
+  resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.2.tgz#558aa53b43b661e1925a0afdfa36a9a1085fe57a"
 
 lodash.partialright@^4.1.4:
   version "4.2.1"
@@ -6005,12 +6001,6 @@ ternary-stream@^2.0.1:
     fork-stream "^0.0.4"
     merge-stream "^1.0.0"
     through2 "^2.0.1"
-
-test@^0.6.0:
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/test/-/test-0.6.0.tgz#5986ac445ec17754322512d104ba32c8a63e938e"
-  dependencies:
-    ansi-font "0.0.2"
 
 text-table@~0.2.0:
   version "0.2.0"
