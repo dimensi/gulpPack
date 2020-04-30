@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/edDimensi/gulpPack#readme",
   "dependencies": {
-    "jquery": "^3.1.1",
+    "jquery": "^3.5.0",
     "normalize.css": "^6.0.0"
   },
   "devDependencies": {
