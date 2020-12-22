@@ -71,7 +71,7 @@
     "imports-loader": "^0.7.0",
     "jade-get-data": "^1.0.1",
     "mkdirp": "^0.5.1",
-    "node-notifier": "^5.1.2",
+    "node-notifier": "^8.0.1",
     "rupture": "^0.6.2",
     "script-loader": "^0.7.0",
     "stream-combiner2": "^1.1.1",
